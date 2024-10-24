@@ -1,14 +1,17 @@
 import React from "react";
 import "./SubmitButton.css";
-function SubmitButton({ placeholder }) {
-  function handleClick() {
-    console.log("the button is clicked");
-  }
+import { Link } from "react-router-dom";
+function SubmitButton({ placeholder, link, handleClick }) {
+  // function handleClick() {
+  //   console.log("the button is clicked");
+  // }
   return (
     <div className="submit-btn-div">
-      <button className="submit-btn" onClick={handleClick}>
-        {placeholder}
-      </button>
+      <Link to={link}>
+        <button className="submit-btn" onClick={handleClick}>
+          {placeholder}
+        </button>
+      </Link>
     </div>
   );
 }

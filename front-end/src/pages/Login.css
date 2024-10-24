@@ -1,0 +1,11 @@
+.dont-have-account {
+  display: flex;
+  justify-content: center;
+}
+.forgot-password {
+  display: flex;
+  justify-content: center;
+}
+.underlined {
+  text-decoration: underline;
+}

@@ -1,0 +1,22 @@
+.have-account {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+.underlined {
+  text-decoration: underline;
+}
+.btn-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically if the container has a specified height */
+  height: 8vh; /* Adjust the height as needed, 100vh will take the full height of the viewport */
+}
+.signup-btn {
+  background-color: white;
+  border: solid 2px black;
+  border-radius: 8px;
+  width: 60px;
+  height: 40px;
+  /* margin-left: 300px; */
+}

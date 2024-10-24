@@ -4,8 +4,12 @@
   height: 40px;
   align-items: center;
   justify-content: center;
+  margin: 10px;
 }
 .submit-btn {
   background-color: white;
   border: solid 2px black;
+  border-radius: 8px;
+  width: 60px;
+  height: 40px;
 }
