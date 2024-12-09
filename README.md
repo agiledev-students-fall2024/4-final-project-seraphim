@@ -43,7 +43,13 @@ Seraphim is a creative social platform designed to foster authentic self-express
 
 2. Run `npm install` to install the dependencies listed in the `package.json` configuration file. 
 
-3. Run `npm start` to start up the server. Once it completes, the server should be running on port 8000 by default where the URL is [http://localhost:8000/](http://localhost:8000). Since the command already calls `nodemon server`, there is no need to install `nodemon` to run it to view changes in the server whenever the code changes.
+3. Make a .env file in the same directory and include the following: 
+    ```
+    REACT_APP_SERVER_HOSTNAME=http://localhost:8000/
+    REACT_APP_FRONTEND_HOSTNAME=http://localhost:3000
+    ```
+
+4. Run `npm start` to start up the server. Once it completes, the server should be running on port 8000 by default where the URL is [http://localhost:8000/](http://localhost:8000). Since the command already calls `nodemon server`, there is no need to install `nodemon` to run it to view changes in the server whenever the code changes.
 
 ### How to test the back-end with unit testing: 
 1. Move to the back-end directory of the project. 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { axiosInstance } from "../axios";
 import { Link } from "react-router-dom";
