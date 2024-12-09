@@ -1,4 +1,3 @@
-//import and instantiate express
 import express from "express"
 import { param, validationResult } from "express-validator";
 import Community from "../models/community.model.js";
