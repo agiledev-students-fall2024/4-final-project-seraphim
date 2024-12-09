@@ -54,7 +54,7 @@ Seraphim is a creative social platform designed to foster authentic self-express
 ### How to test the back-end with unit testing: 
 1. Move to the back-end directory of the project. 
 
-2. Make sure to install the mocha, chai, and supertest dependencies with `npm install --save-dev mocha chai supertest`. 
+2. Make sure to install the mocha, chai, and supertest dependencies with `npm install --save-dev mocha chai supertest c8`. 
 
 3. Run `npm test` to run all of the tests and show their outcomes in the terminal. 
 
