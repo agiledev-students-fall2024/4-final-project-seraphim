@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import CommunityPopup from "./CommunityPopup";
-import { FaPlusCircle } from "react-icons/fa";
-import { ImExit } from "react-icons/im";
+import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { IoNavigateCircleOutline } from "react-icons/io5";
 import BackButton from "./BackButton";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -78,21 +77,21 @@ const SubCommunity = (props) => {
           !isJoinedBefore ? (
             <button
               onClick={handleJoinButton}
-              className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2"
+              className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
             >
               Join <FaPlusCircle />
             </button>
           ) : (
             <button
               onClick={handleLeaveButton}
-              className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2"
+              className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
             >
-              Leave <ImExit />
+              Leave <FaMinusCircle />
             </button>
           )
         ) : (
           <Link to={"/home"}>
-            <button className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2">
+            <button className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs">
               Home <IoNavigateCircleOutline className="w-5 h-5" />
             </button>
           </Link>
