@@ -13,6 +13,8 @@ const CreateCommunity = () => {
 
   function handleCreateCommunity(e) {
     e.preventDefault();
+
+    //sends name, description, and picture to the back-end as formdata
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
@@ -24,9 +26,11 @@ const CreateCommunity = () => {
         console.log("New community:", response.data)
         toast.success("Community created successfully!");
 
+        //resets the name and description form fields to empty  
         setName("")
         setDescription("")
 
+        //reset file upload 
         if (fileField.current){
           fileField.current.value = ""
         }
@@ -53,26 +57,28 @@ const CreateCommunity = () => {
       <h1 className="text-xl text-ebony-700 text-center font-bold p-4">
         Create Community
       </h1>
+
       <div className="rounded bg-white p-8 border border-[#d9d9d9]">
         <InputField
           inputfieldName="Name"
           handleChange={(e) => setName(e.target.value)}
           inputValue={name}
         ></InputField>
+
         <InputField
           inputfieldName="Description"
           handleChange={(e) => setDescription(e.target.value)}
           inputValue={description}
         ></InputField>
+
         <div className="flex flex-col gap-1 w-full p-2">
           <label className="text-sm text-ebony-700 font-bold">
             Upload a Picture for Your Community:
           </label>
-          <input type="file" className="pt-1" onChange={handlePictureUpload} ref={fileField}/>
+          <input type="file" className="pt-1 file:cursor-pointer file:p-1 file:pl-5 file:pr-5 file:border file:border-ebony-700 file:bg-rose-900 file:rounded-md file:text-ebony-600 file:hover:bg-ebony file:hover:text-rose-700" onChange={handlePictureUpload} ref={fileField}/>
         </div>
       </div>
       
-
       <SubmitButton
         placeholder="Create"
         handleClick={handleCreateCommunity}

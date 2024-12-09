@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import CommunityPopup from "./CommunityPopup";
-import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { FaPlusCircle } from "react-icons/fa";
+import { ImExit } from "react-icons/im";
 import { IoNavigateCircleOutline } from "react-icons/io5";
 import BackButton from "./BackButton";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../axios";
-import { set } from "mongoose";
 
 const SubCommunity = (props) => {
   //join and visit button
@@ -87,7 +87,7 @@ const SubCommunity = (props) => {
               onClick={handleLeaveButton}
               className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2"
             >
-              Leave <FaMinusCircle />
+              Leave <ImExit />
             </button>
           )
         ) : (

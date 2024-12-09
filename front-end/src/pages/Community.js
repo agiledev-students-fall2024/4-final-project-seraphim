@@ -13,6 +13,7 @@ const Community = () => {
     const handleSearch = (e) => {
         setInput(e.target.value);
 
+        //checks for empty searches
         if (input === undefined || input === '') {
             setData(originalData);
             return
@@ -22,6 +23,7 @@ const Community = () => {
             return
         }
 
+        //filters data based on search term
         const newData = data.filter(item => {
             console.log(item.name.toLowerCase())
             return item.name.toLowerCase().includes(input.toLowerCase())
