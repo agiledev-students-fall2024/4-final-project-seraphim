@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SubCommunity from "../components/SubCommunity";
 
 const SubCommunityPage = (props) => {
-  //stores the fake data into data
+  //stores the database data into data
   const [data, setData] = useState([]);
   const { communityId } = useParams();
 

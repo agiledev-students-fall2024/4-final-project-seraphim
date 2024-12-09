@@ -5,7 +5,6 @@ import { IoNavigateCircleOutline } from "react-icons/io5";
 import BackButton from "./BackButton";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../axios";
-import { set } from "mongoose";
 
 const SubCommunity = (props) => {
   //join and visit button
