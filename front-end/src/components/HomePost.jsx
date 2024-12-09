@@ -3,7 +3,7 @@ import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { axiosInstance } from "../axios";
 import { Link } from "react-router-dom";
 
-const HomePost = ({ post, isReply = false }) => {
+const HomePost = ({ post, isReply = false, onDelete }) => { /*const HomePost = ({ post, isReply = false }) => { this old line updated this line to delete post*/
   const [user, setUser] = useState(null);
   const [liked, setLiked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -109,6 +109,23 @@ const HomePost = ({ post, isReply = false }) => {
       })
   }, [])
 
+  // Determine if the logged-in user is the author of the post
+  const isAuthor = user && postUser && user._id === postUser._id;
+
+  const handleDelete = () => {
+    // Use postState._id to ensure we using the current, correct ID
+    axiosInstance.delete(`/posts/${postState._id}`)
+      .then((response) => {
+        console.log("Post deleted:", response.data.message);
+        if (typeof onDelete === "function") {
+          onDelete(postState._id);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to delete post:", err);
+      });
+  };
+
   return (
     <div
       className={`w-[100%] md:w-[95%] px-4 py-2 bg-lavender_blush-900 rounded-lg ${isReply
@@ -209,6 +226,16 @@ const HomePost = ({ post, isReply = false }) => {
         </button>
       </div>
 
+      {/* Delete Post Button: Only shown if user is the author */}
+      {isAuthor && (
+        <button
+          onClick={handleDelete}
+          className="mt-4 bg-transparent text-rose border-[1px] border-rose py-1 px-4 rounded-md hover:bg-rose hover:text-lavender_blush-900"
+        >
+          Delete Post
+        </button>
+      )}
+
       {
         showReplies && (
           <div className="mt-4">
@@ -237,10 +264,17 @@ const HomePost = ({ post, isReply = false }) => {
               <div className="mt-4">
                 <h3 className="font-bold text-ebony mb-2">Replies</h3>
                 {replies.map((reply) => (
-                  <div key={reply._id} className="flex justify-center">
-                    <HomePost post={reply} isReply={true} />
-                  </div>
-                ))}
+                <div key={reply._id} className="flex justify-center">
+                  <HomePost
+                    post={reply}
+                    isReply={true}
+                    onDelete={(deletedReplyId) => {
+                      // Update the replies state to remove the deleted reply
+                      setReplies((prevReplies) => prevReplies.filter((r) => r._id !== deletedReplyId));
+                    }}
+                  />
+                </div>
+              ))}
               </div>
             )}
           </div>
@@ -251,3 +285,67 @@ const HomePost = ({ post, isReply = false }) => {
 };
 
 export default HomePost;
+
+
+/* Keep a small copy of this in case I mess something up */
+/*
+      
+      {isAuthor && (
+        <button
+          onClick={handleDelete}
+          className="mt-4 bg-transparent text-rose border-[1px] border-rose py-1 px-4 rounded-md hover:bg-rose hover:text-lavender_blush-900"
+        >
+          Delete Post
+        </button>
+      )}
+
+      {
+        showReplies && (
+          <div className="mt-4">
+            <input
+              type="text"
+              value={newReply}
+              onChange={(e) => setNewReply(e.target.value)}
+              placeholder="Write a reply..."
+              className="border-[1px] border-rose p-2 w-full rounded-md bg-transparent placeholder-ebony-700 text-ebony"
+            />
+            <div className="flex flex-row gap-2">
+              <button
+                onClick={handleReplySubmit}
+                className="mt-2 bg-rose text-lavender_blush-900 py-1 px-4 rounded-md hover:bg-ebony"
+              >
+                Post Reply
+              </button>
+              <button
+                onClick={handleReplyCancel}
+                className="mt-2 bg-transparent text-ebony border-[1px] border-ebony py-1 px-4 rounded-md hover:text-rose hover:border-rose"
+              >
+                Cancel
+              </button>
+            </div>
+            {replies.length > 0 && (
+              <div className="mt-4">
+                <h3 className="font-bold text-ebony mb-2">Replies</h3>
+                {replies.map((reply) => (
+                <div key={reply._id} className="flex justify-center">
+                  <HomePost
+                    post={reply}
+                    isReply={true}
+                    onDelete={(deletedReplyId) => {
+                      // Update the replies state to remove the deleted reply
+                      setReplies((prevReplies) => prevReplies.filter((r) => r._id !== deletedReplyId));
+                    }}
+                  />
+                </div>
+              ))}
+              </div>
+            )}
+          </div>
+        )
+      }
+    </div >
+  );
+};
+
+export default HomePost;
+*/
