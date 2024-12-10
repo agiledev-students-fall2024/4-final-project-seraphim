@@ -27,6 +27,7 @@ const joinCommunity = async (req, res) => {
     community.members.push(userId);
     await user.save();
     await community.save();
+    // console.log(user.communities, community.members);
 
     res.status(200).json({
       message: "You successfully joined the community",
@@ -46,7 +47,6 @@ const checkCommunityMembership = async (req, res) => {
 
     const user = await User.findById(userId);
     const community = await Community.findById(communityId);
-    // console.log(user.communities, community.members);
     if (
       user.communities.includes(community.communityId) ||
       community.members.includes(userId)

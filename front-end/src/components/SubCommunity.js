@@ -22,11 +22,13 @@ const SubCommunity = (props) => {
         if (response.data.isMember) {
           setIsJoinedBefore(true);
         }
+        console.log(response.data);
+        console.log("isJoinedBefore", isJoinedBefore);
       })
       .catch((err) => {
         console.error("Error checking community membership", err);
       });
-  }, []);
+  }, [isJoinedBefore]);
 
   const handleJoinButton = () => {
     setStatus(true);
@@ -35,7 +37,6 @@ const SubCommunity = (props) => {
       .then((res) => {
         console.log(res.data);
         setIsJoined(true);
-        setIsJoinedBefore(true);
       })
       .catch((err) => {
         console.log("error in joining community");
