@@ -78,7 +78,7 @@ const Accessibility = (props) => {
         < div className="w-[100%] m-[auto] flex flex-col justify-center items-center gap-6 p-8 md:w-[80%] lg:w-[60%]" >
             <TitleAndDescription
                 title={props.text}
-                description={"Manage your color mode, display, and font settings"}
+                description={"Manage your color mode and font settings."}
             />
 
             <div className="w-[90%] mx-auto gap-4 bg-lavender_blush-900 p-2 rounded-md">
@@ -98,7 +98,7 @@ const Accessibility = (props) => {
                     <p className="text-md text-ebony font-bold">Font Size</p>
                 </div>
                 <div className="flex flex-col justify-between items-center">
-                    <p className={"text-ebony font-thin mb-5 w-[70%] px-" + size}>Lorem ipsum odor amet, consectetuer adipiscing elit. Metus ex eget tristique fringilla convallis morbi tincidunt.</p>
+                    <p className={"text-ebony font-thin mb-5 w-[70%] px-" + size}>This is your current font size. Adjusting the font will only affect posts on the home page.</p>
                     <input className="w-[80%] mb-5" type="range" default="16" value={size} step="2" min="10" max="18" onChange={adjustFontSize}></input>
                 </div>
             </div>
