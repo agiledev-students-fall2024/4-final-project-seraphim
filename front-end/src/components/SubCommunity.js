@@ -5,6 +5,7 @@ import { IoNavigateCircleOutline } from "react-icons/io5";
 import BackButton from "./BackButton";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosInstance } from "../axios";
+import { set } from "mongoose";
 
 const SubCommunity = (props) => {
   //join and visit button
@@ -12,6 +13,7 @@ const SubCommunity = (props) => {
   const [isOpen, setStatus] = useState(false);
   const [isVisitButton, setIsVisitButton] = useState(false);
   const [isJoined, setIsJoined] = useState(false);
+  const [toLeave, setToLeave] = useState(false);
   const { communityId } = useParams();
 
   useEffect(() => {
@@ -21,6 +23,7 @@ const SubCommunity = (props) => {
       .then((response) => {
         if (response.data.isMember) {
           setIsJoinedBefore(true);
+          setToLeave(true);
         }
         console.log(response.data);
         console.log("isJoinedBefore", isJoinedBefore);
@@ -37,6 +40,8 @@ const SubCommunity = (props) => {
       .then((res) => {
         console.log(res.data);
         setIsJoined(true);
+        // setIsJoinedBefore(true);
+        setToLeave(true);
       })
       .catch((err) => {
         console.log("error in joining community");
@@ -52,6 +57,7 @@ const SubCommunity = (props) => {
         console.log(res.data);
         setIsJoined(false);
         setIsJoinedBefore(false);
+        setToLeave(false);
       })
       .catch((err) => {
         console.error(err);
@@ -75,7 +81,7 @@ const SubCommunity = (props) => {
       <BackButton backButtonHandler={handleBackButton} />
       <div className="flex justify-end w-[100%] mb-6">
         {!isVisitButton ? (
-          !isJoinedBefore ? (
+          !toLeave ? (
             <button
               onClick={handleJoinButton}
               className="bg-ebony-700 z-1 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
