@@ -109,7 +109,8 @@ const SubCommunity = (props) => {
         alt="group logo"
         onError={(e) => {
           // console.log("Image failed to load:", props.image);
-          console.error(e);
+          // try to console.error(e); and under target under e you can find the complete url
+          console.log(e.target.src);
           e.target.src = "/default_pic.png";
         }}
       />
