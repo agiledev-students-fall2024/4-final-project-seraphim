@@ -77,14 +77,14 @@ const SubCommunity = (props) => {
           !isJoinedBefore ? (
             <button
               onClick={handleJoinButton}
-              className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
+              className="bg-ebony-700 z-1 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
             >
               Join <FaPlusCircle />
             </button>
           ) : (
             <button
               onClick={handleLeaveButton}
-              className="bg-ebony-700 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
+              className="bg-ebony-700 z-1 px-4 py-2 rounded-lg font-light text-rose-700 hover:text-ebony-700 hover:bg-rose-700 flex flex-row items-center gap-2 w-auto max-w-xs"
             >
               Leave <FaMinusCircle />
             </button>
