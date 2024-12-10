@@ -31,7 +31,7 @@ const CreateCommunity = () => {
         setDescription("")
 
         //reset file upload 
-        if (fileField.current){
+        if (fileField.current) {
           fileField.current.value = ""
         }
 
@@ -43,10 +43,10 @@ const CreateCommunity = () => {
 
   function handlePictureUpload(e) {
     const file = e.target.files[0];
-    if (file === undefined){
+    if (file === undefined) {
       toast.error("Failed to upload picture.")
     }
-    else{
+    else {
       setCommunityPicture(file);
       toast.success("Picture uploaded successfully!");
     }
@@ -75,10 +75,10 @@ const CreateCommunity = () => {
           <label className="text-sm text-ebony-700 font-bold">
             Upload a Picture for Your Community:
           </label>
-          <input type="file" className="pt-1 file:cursor-pointer file:p-1 file:pl-5 file:pr-5 file:border file:border-ebony-700 file:bg-rose-900 file:rounded-md file:text-ebony-600 file:hover:bg-ebony file:hover:text-rose-700" onChange={handlePictureUpload} ref={fileField}/>
+          <input type="file" className="pt-1 file:cursor-pointer file:p-1 file:pl-5 file:pr-5 file:border file:border-ebony-700 file:bg-rose-900 file:rounded-md file:text-ebony-600 file:hover:bg-ebony file:hover:text-rose-700" onChange={handlePictureUpload} ref={fileField} />
         </div>
       </div>
-      
+
       <SubmitButton
         placeholder="Create"
         handleClick={handleCreateCommunity}
