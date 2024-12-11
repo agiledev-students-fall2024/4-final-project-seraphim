@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "nodemon server",
-    "test": "c8 mocha --timeout=3000"
+    "test": "c8 mocha --timeout=3000",
+    "build": "npm run build"
   },
   "author": "",
   "license": "ISC",
