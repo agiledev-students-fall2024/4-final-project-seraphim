@@ -97,6 +97,6 @@ Team members will commit to the following norms and values of the team:
 ### How to test the back-end with unit testing: 
 1. Move to the back-end directory of the project. 
 
-2. Make sure to install the mocha, chai, and supertest dependencies with `npm install --save-dev mocha chai supertest c8`. 
+2. Make sure to install the mocha, chai, supertest, and c8 dependencies with `npm install --save-dev mocha chai supertest c8`. 
 
 3. Run `npm test` to run all of the tests and show their outcomes in the terminal. 
