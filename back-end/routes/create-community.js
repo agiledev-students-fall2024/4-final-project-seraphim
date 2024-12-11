@@ -9,7 +9,7 @@ import { body, validationResult } from "express-validator";
 //handles creaing a new community and uploading a picture 
 const router = express.Router();
 
-// enable file uploads saved to disk in a directory named 'public/uploads'
+// enable file uploads saved to disk in a directory named 'public/uploads/community'
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/uploads/community");
@@ -50,7 +50,7 @@ router.post("/api/create-community", protectRouter, upload.single("file"),
     .trim()
     .notEmpty().withMessage("Description should be provided")
     .isLength({ min: 5 }).withMessage("Description must be at least 5 characters long")
-    .isLength({ max: 500}).withMessage("Description cannot exceed 300 characters")
+    .isLength({ max: 500}).withMessage("Description cannot exceed 500 characters")
     .custom((value) => {
       if (/^\s|\s$/.test(value)){
         throw new Error("Description should not have any leading and trailing whitespace")
@@ -65,6 +65,8 @@ router.post("/api/create-community", protectRouter, upload.single("file"),
       }
       return true
     })
+    .withMessage("File upload failed")
+    
 ],
 
 async (req, res) => {
