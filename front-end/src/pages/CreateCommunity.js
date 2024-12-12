@@ -11,6 +11,12 @@ const CreateCommunity = () => {
   const [communityPicture, setCommunityPicture] = useState("");
   const fileField = React.useRef(null);
 
+  const handleCancelClick = () => {
+    setDescription("");
+    setCommunityPicture("");
+    setName(null);
+  };
+
   function handleCreateCommunity(e) {
     e.preventDefault();
 
@@ -53,36 +59,50 @@ const CreateCommunity = () => {
   }
 
   return (
-    <div className="w-[40%] flex flex-col justify-center items-center gap-4 p-8 m-[auto]">
-      <h1 className="text-xl text-ebony-700 text-center font-bold p-4">
-        Create Community
-      </h1>
-
-      <div className="rounded bg-white p-8 border border-[#d9d9d9]">
+    <div className="community-page-container">
+    <h1 className="text-xl font-bold text-ebony-700 text-center pb-4">Create Community</h1>
+    <div className="create-community-container">
+      <div className="header">
+        <button
+          onClick={handleCancelClick}
+          className="mt-4 bg-rose text-lavender_blush-900 border-[1px] border-rose py-1 px-4 rounded-md hover:bg-lavender_blush-900 hover:text-rose"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={handleCreateCommunity}
+          className="mt-4 bg-rose text-lavender_blush-900 border-[1px] border-rose py-1 px-4 rounded-md hover:bg-lavender_blush-900 hover:text-rose"
+        >
+          Create
+        </button>
+      </div>
+      <div className="w-[85%] flex flex-col gap-1 m-auto">
         <InputField
-          inputfieldName="Name"
+          inputfieldName="Community Name"
           handleChange={(e) => setName(e.target.value)}
           inputValue={name}
-        ></InputField>
-
+        />
         <InputField
           inputfieldName="Description"
           handleChange={(e) => setDescription(e.target.value)}
           inputValue={description}
-        ></InputField>
-
-        <div className="flex flex-col gap-1 w-full p-2">
-          <label className="text-sm text-ebony-700 font-bold">
-            Upload a Picture for Your Community:
+        />
+        <div className="flex flex-col justify-center text-center">
+          <label
+            htmlFor="community-image"
+            className="mt-4 bg-rose text-lavender_blush-900 border-[1px] border-rose py-2 px-6 rounded-md hover:bg-lavender_blush-900 hover:text-rose"
+          >
+            Upload a Community Picture
+            <input
+              type="file"
+              id="community-image"
+              onChange={handlePictureUpload}
+              ref={fileField}
+            />
           </label>
-          <input type="file" className="pt-1 file:cursor-pointer file:p-1 file:pl-5 file:pr-5 file:border file:border-ebony-700 file:bg-rose-900 file:rounded-md file:text-ebony-600 file:hover:bg-ebony file:hover:text-rose-700" onChange={handlePictureUpload} ref={fileField} />
         </div>
       </div>
-
-      <SubmitButton
-        placeholder="Create"
-        handleClick={handleCreateCommunity}
-      ></SubmitButton>
+    </div>
     </div>
   );
 };

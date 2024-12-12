@@ -8,23 +8,15 @@ function InputField({
   inputValue,
   name
 }) {
-  // const [value, setValue] = useState("");
-  // const handleChange = (event) => {
-  //   setValue(event.target.value);
-  //   // if (props.onChange) {
-  //   //   props.onChange(event);
-  //   // }
-  // };
+
   return (
       <div className="flex flex-col gap-1 w-full p-1.5">
-        {/* <div className="input"> */}
-        {/* <img src={imgSrc} alt="" /> */}
-        <label className="text-sm text-ebony-700 font-bold">
+        <label className="text-md text-ebony-700 font-bold">
           {inputfieldName}
         </label>
         {inputfieldName === "Description" ? (
           <textarea
-            className="h-48 bg-lavender_blush-900 rounded-md px-2 py-1 text-md text-ebony w-full border border-[#d9d9d9] mt-0"
+            className="h-48 bg-[#fff] rounded-md px-2 py-1 text-md text-ebony w-full border border-[#ccaaaa] mt-0"
             type={inputType}
             id={inputfieldName}
             onChange={handleChange}
@@ -33,7 +25,7 @@ function InputField({
           ></textarea>
         ): (
           <input
-          className="bg-lavender_blush-900 rounded-md px-2 py-1 text-md text-ebony w-full border border-[#d9d9d9]"
+          className="bg-[#fff] rounded-md px-2 py-1 text-md text-ebony w-full border border-[#ccaaaa]"
           type={inputType}
           id={inputfieldName}
           onChange={handleChange}

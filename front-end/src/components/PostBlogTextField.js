@@ -39,18 +39,25 @@ const PostBlogTextField = ({ onCancel, onPost, communities }) => {
   return (
     <div className="post-blog-container">
       <div className="header">
-        <button onClick={handleCancelClick}>Cancel</button>
-        <button onClick={handlePostClick}>Post</button>
+        <button onClick={handleCancelClick} className="mt-4 bg-rose text-lavender_blush-900 border-[1px] border-rose py-1 px-4 rounded-md hover:bg-lavender_blush-900 hover:text-rose">
+          Cancel
+        </button>
+        <button onClick={handlePostClick} className="mt-4 bg-rose text-lavender_blush-900 border-[1px] border-rose py-1 px-4 rounded-md hover:bg-lavender_blush-900 hover:text-rose">
+          Post
+        </button>
       </div>
-      <DropdownMenu
-        name="your-communities"
-        label="Your Communities"
-        options={communities}
-        onChange={handleDropdownChange}
-        value={selectedOption}
-      />
+      <div className="w-[80%] m-auto">
+        <DropdownMenu
+          name="your-communities"
+          label="Your Communities"
+          options={communities}
+          onChange={handleDropdownChange}
+          value={selectedOption}
+        />
+      </div>
       <textarea
         placeholder="Write your post here..."
+        className="usertext"
         value={postContent}
         onChange={(e) => setPostContent(e.target.value)}
       />
@@ -58,11 +65,11 @@ const PostBlogTextField = ({ onCancel, onPost, communities }) => {
         <img
           src={URL.createObjectURL(attachedImage)}
           alt="Attached"
-          className="attached-image"
+          className="w-[80%] m-auto rounded-md object-cover bg-ebony-800"
         />
       )}
       <div className="footer">
-        <label htmlFor="attach-image" className="attach-button">
+        <label htmlFor="attach-image" className="mt-4 bg-rose text-lavender_blush-900 border-[1px] border-rose py-1 px-4 rounded-md hover:bg-lavender_blush-900 hover:text-rose">
           Attach Image
           <input
             type="file"
