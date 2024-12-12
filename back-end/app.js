@@ -5,6 +5,7 @@ import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+import path from "path";
 
 // import routes
 import accountSettings from "./routes/account-settings.js";
@@ -61,6 +62,9 @@ app.use(home);
 app.use(post);
 app.use(profile);
 app.use(userRoutes); //new
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "../front-end/build")));
 
 app.get("*", (req, res) => {
     res.sendFile(path.resolve("build", "index.html"));
