@@ -39,8 +39,8 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // make 'public' directory publicly readable with static content
-//app.use("/public", express.static("public"));
-app.use('/uploads', express.static('public/uploads'));
+// app.use("/public", express.static("public"));
+// app.use('/uploads', express.static('public/uploads'));
 
 // use routes
 app.use(accountSettings);
@@ -64,6 +64,7 @@ app.use(profile);
 app.use(userRoutes); //new
 
 const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
 app.use(express.static(path.join(__dirname, "../front-end/build")));
 
 app.get("*", (req, res) => {
