@@ -16,6 +16,9 @@ Seraphim is a creative social platform designed to foster authentic self-express
 
 ## Usage
 
+### Link to the project on the web:
+You can access our project [here](https://seraphim-app-azgju.ondigitalocean.app/).
+
 ### How to set up the project:
 1. Clone the [project repository](https://github.com/agiledev-students-fall2024/4-final-project-seraphim) from `GitHub` to your local desktop. You may use Visual Studio Code or your preferred code editor. 
 
