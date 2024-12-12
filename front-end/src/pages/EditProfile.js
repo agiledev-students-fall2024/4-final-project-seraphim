@@ -90,7 +90,14 @@ const EditProfile = (props) => {
 
       <div className="flex flex-col justify-center items-center w-[100%] mx-auto gap-2 p-6 rounded-md md:w-[80%] lg:w-[60%]">
         <h2 className="text-xl text-ebony-600 text-center mb-2">
-          <img className="w-32 h-32 md:w-44 md:h-44 rounded-lg object-cover" src={user.profilePicture} alt="profile pic" />
+          <img 
+            className="w-32 h-32 md:w-44 md:h-44 rounded-lg object-cover"
+            src={user.profilePicture} alt="profile pic"
+            onError={(e) => {
+              console.error('Image failed to load:', e.target.src);
+              e.target.src = '/default_pic.png'; 
+            }}
+          />
         </h2>
         <input type="file" onChange={handleProfilePicInput} />
 

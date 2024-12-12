@@ -144,6 +144,10 @@ const HomePost = ({ post, isReply = false }) => {
           alt="Blog Post"
           className="w-[95%] h-auto rounded-md m-auto mt-3 bg-ebony-800"
           style={{ maxHeight: "400px", objectFit: "cover" }}
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.src = '/default_pic.png'; 
+          }}
         />
       ) : (
         <div className="grid grid-cols-2 gap-4 w-[95%] m-auto mt-3">
@@ -154,6 +158,10 @@ const HomePost = ({ post, isReply = false }) => {
                 src={`${process.env.REACT_APP_SERVER_HOSTNAME}${image}`}
                 alt={`Blog Post ${index + 1}`}
                 className="w-full h-48 rounded-md object-cover bg-ebony-800"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.target.src);
+                  e.target.src = '/default_pic.png'; 
+                }}
               />
             ))}
         </div>
