@@ -63,6 +63,7 @@ const Profile = (props) => {
 
     return (
         <div className="w-[100%] lg:w-[90%] flex flex-col justify-center items-center gap-4 p-8 m-[auto]">
+            <h1 className="text-xl font-bold text-ebony-700 text-center">Profile</h1>
             <ProfileHeader 
                 user={user}
                 loggedIn={user.signedIn} 
