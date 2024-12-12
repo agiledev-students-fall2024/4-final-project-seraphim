@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import SubCommunity from "../components/SubCommunity";
 
 const SubCommunityPage = (props) => {
-  //stores the fake data into data
+  //stores the database data into data
   const [data, setData] = useState([]);
   const { communityId } = useParams();
 
@@ -25,7 +25,7 @@ const SubCommunityPage = (props) => {
   }, [communityId]);
 
   return (
-    <div className="w-[95%] m-[auto] flex flex-col justify-center items-center gap-6 p-8 md:w-[80%] lg:w-[70%]">
+    <div className="w-[95%] m-[auto] flex flex-col justify-center items-center gap-6 p-8 md:w-[80%] lg:w-[70%] mt-[3em]">
       <SubCommunity
         image={`${process.env.REACT_APP_SERVER_HOSTNAME}${data.communityPicture}`}
         name={data.name}

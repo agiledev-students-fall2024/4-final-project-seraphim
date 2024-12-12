@@ -9,7 +9,7 @@ import { body, validationResult } from "express-validator";
 //handles creaing a new community and uploading a picture 
 const router = express.Router();
 
-// enable file uploads saved to disk in a directory named 'public/uploads'
+// enable file uploads saved to disk in a directory named 'public/uploads/community'
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/uploads/community");
@@ -37,12 +37,26 @@ router.post("/api/create-community", protectRouter, upload.single("file"),
   body("name")
     .trim()
     .notEmpty().withMessage("Name needs to be provided")
-    .isLength({ min: 2 }).withMessage("Name must be at least 2 characters long"),
+    .isLength({ min: 2 }).withMessage("Name must be at least 2 characters long")
+    .isLength({ max: 100}).withMessage("Name cannot exceed 100 characters long")
+    .custom((value) => {
+      if (/^\s|\s$/.test(value)){
+        throw new Error("Name should not have any leading and trailing whitespace")
+      }
+      return true
+    }),
   
   body("description")
     .trim()
     .notEmpty().withMessage("Description should be provided")
-    .isLength({ min: 5 }).withMessage("Description must be at least 5 characters long"),
+    .isLength({ min: 5 }).withMessage("Description must be at least 5 characters long")
+    .isLength({ max: 500}).withMessage("Description cannot exceed 500 characters")
+    .custom((value) => {
+      if (/^\s|\s$/.test(value)){
+        throw new Error("Description should not have any leading and trailing whitespace")
+      }
+      return true
+    }),
 
   body("file")
     .custom((value, {req}) => {
@@ -51,16 +65,18 @@ router.post("/api/create-community", protectRouter, upload.single("file"),
       }
       return true
     })
+    .withMessage("File upload failed")
+    
 ],
 
 async (req, res) => {
   try{
     //data validation
-    const error = validationResult(req)
+    const errors = validationResult(req)
     
-    if (!error.isEmpty()){
+    if (!errors.isEmpty()){
       return res.status(400).json({
-        errors: error.array()
+        errors: errors.array()
       })
     }
 

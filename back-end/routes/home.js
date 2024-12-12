@@ -50,16 +50,12 @@ router.get("/api/home", protectRouter, async (req, res) => {
 
     const blockedComms = blockedData.blockedCommunities;
 
-    // if user has blocked users
+    // if user has blocked communities
+    console.log(posts.length)
     if (blockedComms.length > 0) {
-      blockedComms.map(comm => {
-        posts.map(post => {
-          // remove post from posts array
-          if (post.community.equals(comm.cid)) {
-            let index = posts.indexOf(post);
-            posts.splice(index, 1);
-          }
-        });
+      const blockedCs = blockedComms.map((comm) => comm.name);
+      posts = posts.filter((post) => {
+        return post.community.name && !blockedCs.includes(post.community.name);
       });
     };
 
@@ -68,14 +64,12 @@ router.get("/api/home", protectRouter, async (req, res) => {
 
     // if user has muted words
     if (mutedWords.length > 0) {
-      mutedWords.map(word => {
-        posts.map(post => {
-          // remove post from posts array
-          if (post.content.toLowerCase().includes(word.toLowerCase())) {
-            let index = posts.indexOf(post);
-            posts.splice(index, 1);
-          }
-        });
+      const muted = mutedWords.map((word) => word.toLowerCase());
+      posts = posts.filter((post) => {
+        return !muted.some((word) =>
+          post.content.toLowerCase().includes(word) ||
+          post.community.name.toLowerCase().includes(word)
+        )
       });
     };
 

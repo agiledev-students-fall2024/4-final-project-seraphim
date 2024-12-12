@@ -61,6 +61,7 @@ const Post = () => {
 
   return (
     <div className="post-page-container">
+      <h1 className="text-xl font-bold text-ebony-700 text-center pb-4">Post</h1>
       {user && (
         <PostBlogTextField
           onCancel={handleCancel}

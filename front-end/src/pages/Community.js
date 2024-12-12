@@ -11,9 +11,9 @@ const Community = () => {
     const [originalData, setOriginalData] = useState([])
 
     const handleSearch = (e) => {
-        console.log(e.target.value);
         setInput(e.target.value);
 
+        //checks for empty searches
         if (input === undefined || input === '') {
             setData(originalData);
             return
@@ -23,7 +23,8 @@ const Community = () => {
             return
         }
 
-        const newData = reversedData.filter(item => {
+        //filters data based on search term
+        const newData = data.filter(item => {
             console.log(item.name.toLowerCase())
             return item.name.toLowerCase().includes(input.toLowerCase())
         })

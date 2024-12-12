@@ -1,4 +1,3 @@
-//import and instantiate express
 import express from "express"
 import Community from "../models/community.model.js";
 import Setting from "../models/setting.model.js";

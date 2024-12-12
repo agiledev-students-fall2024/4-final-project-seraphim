@@ -1,4 +1,3 @@
-//import and instantiate express
 import express from "express"
 import { param, validationResult } from "express-validator";
 import Community from "../models/community.model.js";
@@ -10,23 +9,31 @@ router.get('/api/community/:communityId',
 [
     param("communityId")
      .isMongoId().withMessage("Invalid Community Id")
+     .custom(async (value) => {
+        const community = await Community.findById(value)
+
+        if (!community){
+            throw new Error("Community was not found!")
+        }
+        return true
+     })
 ],
 
 async (req, res) => {
     try {
         //data validation 
-        const error = validationResult(req)
+        const errors = validationResult(req)
 
-        if (!error.isEmpty()){
+        if (!errors.isEmpty()){
             return res.status(400).json({
-                errors: error.array()
+                errors: errors.array()
             })
         }
 
         //find community from database
         const community = await Community.findById(req.params.communityId)
 
-        //validate the community 
+        //additional validation of the community 
         if (!community){
             return res.status(404)({
                 message: "community not found"

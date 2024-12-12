@@ -169,6 +169,39 @@ router.post("/api/posts/:id/reply", protectRouter, async (req, res) => {
   }
 });
 
+// Route to delete a post
+router.delete("/api/posts/:id", protectRouter, async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const userId = req.user._id;
+
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Check if the logged-in user is the author of the post
+    if (!post.madeBy.equals(userId)) {
+      return res.status(403).json({ error: "You are not authorized to delete this post" });
+    }
+
+    await Post.findByIdAndDelete(postId);
+
+    // Also remove the post from the user's posts array, if necessary
+    await User.findByIdAndUpdate(
+      userId,
+      { $pull: { posts: postId } },
+      { new: true }
+    );
+
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    res.status(500).json({ error: "Failed to delete post" });
+  }
+});
+
+
 export default router;
 
 

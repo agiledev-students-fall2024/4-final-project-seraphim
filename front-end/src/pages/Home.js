@@ -102,6 +102,7 @@ const Home = () => {
 
   return (
     <div className="w-[100%] flex flex-col justify-center items-center gap-6 p-8 mx-auto md:w-[90%]">
+      <h1 className="text-xl font-bold text-ebony-700 text-center">Home</h1>
       <SearchBar
         searchInput={searchInput}
         onChange={handleChange}
@@ -119,7 +120,14 @@ const Home = () => {
       <div className="w-[100%] flex flex-col gap-4 md:w-[80%] lg:w-[70%]">
         {filteredPosts.map((post) => (
           <div key={post._id}>
-            <HomePost post={post} />
+            <HomePost
+              post={post}
+              onDelete={(deletedPostId) => {
+                // Update the posts and filteredPosts arrays to remove the deleted post
+                setPosts((prevPosts) => prevPosts.filter((p) => p._id !== deletedPostId));
+                setFilteredPosts((prevFiltered) => prevFiltered.filter((p) => p._id !== deletedPostId));
+              }}
+            />
           </div>
         ))}
       </div>

@@ -48,7 +48,7 @@ function AppContent() {
       <div className={color.toLowerCase() + " flex h-screen"}>
         <ConditionalNavBar noNavRoutes={noNavRoutes} />
 
-        <div className={"dark:bg-lavender_blush-1000 flex-1 p-4 z-0 overflow-y-auto h-screen text-" + font}>
+        <div className={"dark:bg-lavender_blush-1000 flex-1 p-4 z-0 overflow-y-auto h-screen px-" + font}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Home />} />
