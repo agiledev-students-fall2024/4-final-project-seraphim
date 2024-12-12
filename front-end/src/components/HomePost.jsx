@@ -166,29 +166,34 @@ const HomePost = ({ post, isReply = false, onDelete }) => { /*const HomePost = (
       <div className={"w-[95%] m-auto text-ebony px-" + size}>
         {postState.content}
       </div>
-      {
-        postState.images && postState.images.length === 1 ? (
-          <img
-            src={`${process.env.REACT_APP_SERVER_HOSTNAME}${postState.images[0]}`}
-            alt="Blog Post"
-            className="w-[95%] h-auto rounded-md m-auto mt-3 bg-ebony-800"
-            style={{ maxHeight: "400px", objectFit: "cover" }}
-          />
-        ) : (
-          <div className="grid grid-cols-2 gap-4 w-[95%] m-auto mt-3">
-            {postState.images &&
-              postState.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={`${process.env.REACT_APP_SERVER_HOSTNAME}${image}`}
-                  alt={`Blog Post ${index + 1}`}
-                  className="w-full h-48 rounded-md object-cover bg-ebony-800"
-                />
-              ))}
-          </div>
-        )
-      }
-
+      {postState.images && postState.images.length === 1 ? (
+        <img
+          src={`${process.env.REACT_APP_SERVER_HOSTNAME}${postState.images[0]}`}
+          alt="Blog Post"
+          className="w-[95%] h-auto rounded-md m-auto mt-3 bg-ebony-800"
+          style={{ maxHeight: "400px", objectFit: "cover" }}
+          onError={(e) => {
+            console.error('Image failed to load:', e.target.src);
+            e.target.src = '/default_pic.png'; 
+          }}
+        />
+      ) : (
+        <div className="grid grid-cols-2 gap-4 w-[95%] m-auto mt-3">
+          {postState.images &&
+            postState.images.map((image, index) => (
+              <img
+                key={index}
+                src={`${process.env.REACT_APP_SERVER_HOSTNAME}${image}`}
+                alt={`Blog Post ${index + 1}`}
+                className="w-full h-48 rounded-md object-cover bg-ebony-800"
+                onError={(e) => {
+                  console.error('Image failed to load:', e.target.src);
+                  e.target.src = '/default_pic.png'; 
+                }}
+              />
+            ))}
+        </div>
+      )}
       <div className="w-[95%] flex flex-row justify-end items-center gap-8">
         <button
           onClick={toggleLike}
