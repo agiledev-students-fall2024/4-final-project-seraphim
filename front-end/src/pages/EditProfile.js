@@ -24,7 +24,7 @@ const EditProfile = (props) => {
         setUser((prevUser) => ({
           ...prevUser,
           ...newUser
-      }));
+        }));
       })
       .catch(error => {
         console.error("Error fetching user data:", error);
@@ -73,7 +73,7 @@ const EditProfile = (props) => {
     axiosInstance.post("/profile", user)
       .then(response => {
         toast.success("Profile updated successfully!");
-        navigate("/profile"); 
+        navigate("/profile");
       })
       .catch(error => {
         console.error("Error updating profile:", error);
@@ -90,12 +90,12 @@ const EditProfile = (props) => {
 
       <div className="flex flex-col justify-center items-center w-[100%] mx-auto gap-2 p-6 rounded-md md:w-[80%] lg:w-[60%]">
         <h2 className="text-xl text-ebony-600 text-center mb-2">
-          <img 
+          <img
             className="w-32 h-32 md:w-44 md:h-44 rounded-lg object-cover"
             src={user.profilePicture} alt="profile pic"
             onError={(e) => {
               console.error('Image failed to load:', e.target.src);
-              e.target.src = '/default_pic.png'; 
+              e.target.src = '/default_pic.png';
             }}
           />
         </h2>
