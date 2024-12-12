@@ -96,6 +96,7 @@ const CreateCommunity = () => {
             <input
               type="file"
               id="community-image"
+              className="hidden"
               onChange={handlePictureUpload}
               ref={fileField}
             />
