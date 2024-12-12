@@ -14,7 +14,7 @@ const SearchBar = ({ searchInput, setSearchInput, handleSearch, onChange }) => {
   return (
     <div className="flex flex-row justify-center w-[85%]">
       <input
-        className="h-10 px-3 py-2 grow-0 w-[90%] bg-lavender_blush-900 text-ebony font-bold rounded-md placeholder-rose-600 rounded-r-none"
+        className="h-10 rounded-md px-3 py-2 grow-0 w-[90%] bg-lavender_blush-900 text-ebony font-bold placeholder-rose-600 border-none rounded-r-none"
         type="text"
         placeholder="Search..."
         onChange={handleChange}

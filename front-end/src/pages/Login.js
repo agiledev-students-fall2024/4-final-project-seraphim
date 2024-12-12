@@ -41,8 +41,8 @@ export default function Login() {
       <LogoPageTitle logoSrc="seraphim-logo.PNG" title="Login" />
       <div className="w-[80%] flex flex-col gap-4">
         <InputField
-          className="input"
           inputfieldName="Username"
+          inputType="username"
           inputValue={username}
           handleChange={handleUsernameChange}
         />

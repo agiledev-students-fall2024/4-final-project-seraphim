@@ -6,15 +6,16 @@ function InputField({
   inputType = "text",
   handleChange,
   inputValue,
-  name
+  name,
+  styles
 }) {
 
   return (
       <div className="flex flex-col gap-1 w-full p-1.5">
-        <label className="text-md text-ebony-700 font-bold">
+        <label className="text-sm text-ebony-700 font-bold">
           {inputfieldName}
         </label>
-        {inputfieldName === "Description" ? (
+        {inputfieldName === "Description"? (
           <textarea
             className="h-48 bg-[#fff] rounded-md px-2 py-1 text-md text-ebony w-full border border-[#ccaaaa] mt-0"
             type={inputType}
@@ -25,7 +26,9 @@ function InputField({
           ></textarea>
         ): (
           <input
-          className="bg-[#fff] rounded-md px-2 py-1 text-md text-ebony w-full border border-[#ccaaaa]"
+          className={`bg-[#fff] rounded-md px-2 py-1 text-md text-ebony w-full ${
+            styles || ""
+          }`}
           type={inputType}
           id={inputfieldName}
           onChange={handleChange}
