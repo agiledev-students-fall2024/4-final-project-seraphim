@@ -3,7 +3,7 @@ import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { axiosInstance } from "../axios";
 import { Link } from "react-router-dom";
 
-const HomePost = ({ post, isReply = false, onDelete }) => { /*const HomePost = ({ post, isReply = false }) => { this old line updated this line to delete post*/
+const HomePost = ({ post, isReply = false, onDelete }) => {
   const [user, setUser] = useState(null);
   const [liked, setLiked] = useState(false);
   const [showReplies, setShowReplies] = useState(false);
@@ -89,14 +89,6 @@ const HomePost = ({ post, isReply = false, onDelete }) => { /*const HomePost = (
   const formatLikes = (likes) => {
     return likes >= 1000 ? `${(likes / 1000).toFixed(1)}K` : likes;
   };
-
-  // Extract necessary data from postUser
-  /*
-  const profilePic = postUser?.profilePicture || "/default_pic.png";
-  const displayName = postUser?.name || "Anonymous";
-  const username = postUser?.username || "unknown";
-  const communityName = postState.community?.name || "General";
-  */
 
   useEffect(() => {
     axiosInstance.get(`/font-size`)
@@ -216,7 +208,7 @@ const HomePost = ({ post, isReply = false, onDelete }) => { /*const HomePost = (
               }}
             />
           )}
-          <div>
+          <div className="flex flex-row justify-center items-center gap-1">
             <span className="font-bold text-lg">
               {formatLikes(postState.likedBy.length)}
             </span>{" "}

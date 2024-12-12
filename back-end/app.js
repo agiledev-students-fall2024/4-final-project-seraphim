@@ -28,7 +28,7 @@ import userRoutes from "./routes/user.js"; //new
 const app = express(); // instantiate an Express object
 
 // adding CORS middleware
-app.use(cors({ origin: "https://seraphim-app-azgju.ondigitalocean.app", credentials: true }));
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 // use the morgan middleware to log all incoming http requests
 app.use(morgan("dev"));

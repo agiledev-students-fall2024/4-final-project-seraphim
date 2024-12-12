@@ -15,7 +15,6 @@ const Profile = (props) => {
         communities: [],
         posts: [],   
     });    
-    //const [hasFollowed, setHasFollowed] = useState(false); 
     const [onCommunities, setOnCommunities] = useState(true);
     const [onBlogs, setOnBlogs] = useState(false);
 
@@ -41,16 +40,6 @@ const Profile = (props) => {
         fetchProfile();
     }, [userId]); 
 
-    /*
-    const handleFollow = () => {
-        setUser((prevUser) => ({
-            ...prevUser,
-            followers: prevUser.followers + (hasFollowed ? -1 : 1)
-        }));
-        setHasFollowed(!hasFollowed); 
-    };
-    */
-
     const toggleCommunities = () => {
         setOnCommunities(true);
         setOnBlogs(false);
@@ -67,8 +56,6 @@ const Profile = (props) => {
             <ProfileHeader 
                 user={user}
                 loggedIn={user.signedIn} 
-                //onFollow={handleFollow} 
-                //hasFollowed={hasFollowed} 
                 toggleBlogs={toggleBlogs}
                 toggleCommunities={toggleCommunities}
             />
@@ -98,7 +85,16 @@ const Profile = (props) => {
                     {user.posts.length > 0 ? (
                         user.posts.slice().reverse().map(post => (
                         <div key={post._id}>
-                            <HomePost post={post} />
+                            <HomePost
+                                post={post}
+                                onDelete={(deletedPostId) => {
+                                    // Update user.posts by filtering out the deleted post
+                                    setUser((prevUser) => ({
+                                        ...prevUser,
+                                        posts: prevUser.posts.filter((p) => p._id !== deletedPostId),
+                                    }));
+                                }}                            
+                            />
                         </div>
                         ))
                     ) : (
