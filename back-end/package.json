@@ -4,9 +4,9 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server",
+    "start": "node server.js",
     "test": "c8 mocha --timeout=3000",
-    "build": "npm run build"
+    "dev": "nodemon server"
   },
   "author": "",
   "license": "ISC",
