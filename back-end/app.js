@@ -62,4 +62,8 @@ app.use(post);
 app.use(profile);
 app.use(userRoutes); //new
 
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve("build", "index.html"));
+  });
+
 export default app;
